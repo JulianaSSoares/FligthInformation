@@ -34,11 +34,14 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        for (Voo v : flights) {
-            System.out.println(v);
-        }
+//        for (Voo v : flights) {
+//            System.out.println(v);
+//        }
 
-            //flights.stream().filter(voo -> voo.getOrigin().)
+            //flights.stream().filter(voo -> voo.getOrigin().equals(voo.getOrigin())).map()
+
+        Stream<Voo> agrupamento = flights.stream().filter(Voo -> Voo.getOrigin().equals("KIN-Jamaica"));
+        System.out.println(agrupamento);
     }
 }
 
