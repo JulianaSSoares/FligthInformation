@@ -1,9 +1,6 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,15 +30,18 @@ public class Main {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
+//
 //        for (Voo v : flights) {
 //            System.out.println(v);
 //        }
 
-            //flights.stream().filter(voo -> voo.getOrigin().equals(voo.getOrigin())).map()
+        //lista ordenada por origem
+        flights.stream()
+                .sorted(Comparator.comparing(Voo::getOrigin))
+        .forEach(System.out::println);
 
-        Stream<Voo> agrupamento = flights.stream().filter(Voo -> Voo.getOrigin().equals("KIN-Jamaica"));
-        System.out.println(agrupamento);
+
+
     }
 }
 

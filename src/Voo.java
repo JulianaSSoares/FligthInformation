@@ -12,6 +12,14 @@ public class Voo {
     private double price;
     private long duration;
 
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
     public Voo(String origin, String destination, String airline, String departure, String arrival, double price) {
         this.origin = origin;
         this.destination = destination;
