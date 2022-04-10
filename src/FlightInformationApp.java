@@ -1,5 +1,6 @@
 import entity.FileManager;
 import entity.Flight;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,11 +26,7 @@ public class FlightInformationApp {
         //criando arquivo csv
         fileManager.writeLines("ordered_list.csv", orderedList);
 
-        //2º arquivo: origin;destination;shortest_flight(h);
-        // longest_fight(h);cheapest_flight;most_expensive_flight;
-        // average_time;average_price
-
-
+        //2º arquivo: origin;destination;shortest_flight(h);longest_fight(h);cheapest_flight;most_expensive_flight;average_time;average_price
 
 
     }

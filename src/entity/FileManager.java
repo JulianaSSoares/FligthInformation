@@ -17,8 +17,8 @@ public class FileManager implements IFileManager {
     List<Flight> flights = new ArrayList<>();
 
     @Override
-    public List<Flight> flightList(String arquivo) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(arquivo))) {
+    public List<Flight> flightList(String file) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
 
@@ -44,17 +44,18 @@ public class FileManager implements IFileManager {
     }
 
     @Override
-    public void writeLines(String caminhoArquivo, List<Flight> conteudoArquivo) {
-        Path caminho = Paths.get(caminhoArquivo);
-        List<String> teste = conteudoArquivo.stream().map(voo -> voo.getOrigin() + ","
+    public void writeLines(String filePath, List<Flight> fileContent) {
+        Path path = Paths.get(filePath);
+        List<String> newFile = fileContent.stream().map(voo -> voo.getOrigin() + ","
                 + voo.getDestination() + "," + voo.getAirline() + ","
                 + voo.getDeparture() + "," + voo.getArrival() + ","
                 + voo.getPrice() + ","
                 + voo.getDuration()).collect(Collectors.toList());
-        teste.add(0, "origin,destination,airline,departure,arrival,price,time");
+        newFile.add(0, "origin,destination,airline,departure,arrival,price,time");
         try {
-            Files.write(caminho, teste);
+            Files.write(path, newFile);
         } catch (IOException excecao) {
+            System.out.println(excecao.getMessage());
         }
     }
 }
