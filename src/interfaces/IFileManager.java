@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IFileManager {
 
-    List<Flight> flightList(String arquivo);
+    List<Flight> flightList(String file);
 
-    void writeLines(String caminhoArquivo, List<Flight> conteudoArquivo);
+    void writeLines(String filePath, List<Flight> fileContent);
 
 }
