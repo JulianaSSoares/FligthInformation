@@ -46,12 +46,12 @@ public class GerenciaArquivo implements IGerenciaArquivo {
     @Override
     public void escreveLinhas(String caminhoArquivo, List<Voo> conteudoArquivo) {
         Path caminho = Paths.get(caminhoArquivo);
-        List<String> teste = conteudoArquivo.stream().map(voo -> voo.getOrigin() + ";"
-                + voo.getDestination() + ";" + voo.getAirline() + ";"
-                + voo.getDeparture() + ";" + voo.getArrival() + ";"
-                + voo.getPrice() + ";"
+        List<String> teste = conteudoArquivo.stream().map(voo -> voo.getOrigin() + ","
+                + voo.getDestination() + "," + voo.getAirline() + ","
+                + voo.getDeparture() + "," + voo.getArrival() + ","
+                + voo.getPrice() + ","
                 + voo.getDuration()).collect(Collectors.toList());
-        teste.add(0, "origin;destination;airline;departure;arrival;price;time");
+        teste.add(0, "origin,destination,airline,departure,arrival,price,time");
         try {
             Files.write(caminho, teste);
         } catch (IOException excecao) {
