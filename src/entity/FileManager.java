@@ -1,6 +1,6 @@
 package entity;
 
-import interfaces.IGerenciaArquivo;
+import interfaces.IFileManager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GerenciaArquivo implements IGerenciaArquivo {
+public class FileManager implements IFileManager {
 
-    List<Voo> flights = new ArrayList<>();
+    List<Flight> flights = new ArrayList<>();
 
     @Override
-    public List<Voo> listaDeVoos(String arquivo) {
+    public List<Flight> flightList(String arquivo) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(arquivo))) {
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
@@ -32,7 +32,7 @@ public class GerenciaArquivo implements IGerenciaArquivo {
                 String arrival = array[4];
                 Double price = Double.valueOf(array[5]);
 
-                Voo voo = new Voo(origin, destination, airline, departure, arrival, price);
+                Flight voo = new Flight(origin, destination, airline, departure, arrival, price);
 
                 flights.add(voo);
                 line = bufferedReader.readLine();
@@ -44,7 +44,7 @@ public class GerenciaArquivo implements IGerenciaArquivo {
     }
 
     @Override
-    public void escreveLinhas(String caminhoArquivo, List<Voo> conteudoArquivo) {
+    public void writeLines(String caminhoArquivo, List<Flight> conteudoArquivo) {
         Path caminho = Paths.get(caminhoArquivo);
         List<String> teste = conteudoArquivo.stream().map(voo -> voo.getOrigin() + ","
                 + voo.getDestination() + "," + voo.getAirline() + ","

@@ -3,7 +3,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-public class Voo {
+public class Flight {
     private String origin;
     private String destination;
     private String airline;
@@ -12,7 +12,7 @@ public class Voo {
     private double price;
     private long duration;
 
-    public Voo(String origin, String destination, String airline, String departure, String arrival, double price) {
+    public Flight(String origin, String destination, String airline, String departure, String arrival, double price) {
         this.origin = origin;
         this.destination = destination;
         this.airline = airline;
@@ -22,7 +22,7 @@ public class Voo {
 
         duration = this.departure.until(this.arrival, ChronoUnit.HOURS);
     }
-    public Voo(){ }
+    public Flight(){ }
 
     public String getOrigin() {
         return origin;
