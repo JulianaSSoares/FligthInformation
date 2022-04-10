@@ -1,13 +1,18 @@
+import entity.CriarArquivo;
+import entity.Voo;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Main {
+public class FlightInformationApp {
     public static void main(String[] args) {
+        CriarArquivo.CriaArquivo criarArquivo = new CriarArquivo.CriaArquivo();
 
         String path = "C:\\Users\\Juh\\IdeaProjects\\FlightInformation\\flights.csv";
         List<Voo> flights = new ArrayList<Voo>();
 
+        //leitura do arquivo csv
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line = bufferedReader.readLine();
             line = bufferedReader.readLine();
@@ -30,18 +35,16 @@ public class Main {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-//
-//        for (Voo v : flights) {
-//            System.out.println(v);
-//        }
 
-        //lista ordenada por origem
-        flights.stream()
-                .sorted(Comparator.comparing(Voo::getOrigin))
-        .forEach(System.out::println);
+        //lista ordenada por origem/destino
+        List<Voo> listaOrdenada = flights.stream().sorted(Comparator.comparing(Voo::getOrigin)
+                .thenComparing(Voo::getDestination)
+                .thenComparing(Voo::getAirline)
+                .thenComparing(Voo::getPrice)
+                .thenComparing(Voo::getDuration)).collect(Collectors.toList());
 
-
+        //criando arquivo csv
+        criarArquivo.escreveLinhas("lista_ordenada.csv",listaOrdenada);
 
     }
 }
-
