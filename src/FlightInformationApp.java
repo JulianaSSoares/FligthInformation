@@ -8,7 +8,7 @@ import static java.util.Comparator.comparing;
 
 public class FlightInformationApp {
     public static void main(String[] args) {
-        String path = "C:\\Users\\Juh\\IdeaProjects\\FlightInformation\\flights.csv";
+        String path = "flights.csv";
         FileManager fileManager = new FileManager();
 
         List<Flight> flights;
